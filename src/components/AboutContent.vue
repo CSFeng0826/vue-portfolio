@@ -24,11 +24,21 @@
             </v-card>
           </Transition>
           <div style="margin-top: 70%; margin-left: 20%">
-            <v-btn size="x-large" class="bg-grey mr-5" color="white" icon="mdi-github"></v-btn>
-            <v-btn size="x-large" class="bg-grey mr-5" color="white" icon="mdi-github"></v-btn>
-            <v-btn size="x-large" class="bg-grey mr-5" color="white" icon="mdi-github"></v-btn>
-            <v-btn size="x-large" class="bg-grey mr-5" color="white" icon="mdi-github"></v-btn>
-            <v-btn size="x-large" class="bg-grey" color="white" icon="mdi-github"></v-btn>
+            <Transition
+              name="trans-btn"
+              :style="{ 'transition-delay': (icon_list.length - 1 - index) * 0.1 + 's' }"
+              v-for="(icon_name, index) in icon_list"
+              :key="index"
+              appear
+            >
+              <v-btn
+                size="x-large"
+                class="bg-grey"
+                :class="index != icon_list.length - 1 ? 'mr-5' : ''"
+                color="white"
+                :icon="icon_name"
+              ></v-btn>
+            </Transition>
           </div>
         </v-col>
         <v-col cols="6">
@@ -43,6 +53,13 @@
 <script setup lang="ts">
 let cardTop = 200
 let cardLeft = 500
+
+const icon_list = [
+  'mdi:mdi-github',
+  'mdi:mdi-linkedin',
+  'mdi:mdi-instagram',
+  'fa-brands fa-telegram'
+]
 </script>
 <style>
 .card {
@@ -64,6 +81,15 @@ let cardLeft = 500
 }
 
 .trans-img-enter-active {
+  transition: all 0.8s ease-in-out;
+}
+
+.trans-btn-enter-from {
+  transform: translateX(-200px);
+  opacity: 0;
+}
+
+.trans-btn-enter-active {
   transition: all 0.8s ease-in-out;
 }
 </style>
