@@ -1,1 +1,8 @@
 @import './base.css';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./font/Montserrat-VariableFont_wght.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
